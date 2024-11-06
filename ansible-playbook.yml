@@ -13,4 +13,4 @@
     command : sudo systemctl start docker
 
   - name: Deploy Docker Container
-    command: docker run -itd -p 8084:8081 docker pull venkat2528/sataragile-bank-project:${BUILD_NUMBER}
+    command: docker run -itd -p 8084:8081 docker pull venkat2528/bankapp-gvr-app:028
