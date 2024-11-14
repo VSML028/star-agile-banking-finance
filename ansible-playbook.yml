@@ -1,5 +1,5 @@
 - name : Configure Docker on EC2 Instances
-  hosts : all
+  hosts : devopsadmin
   become: true
   connection : ssh
   tasks : 
@@ -13,4 +13,4 @@
     command : sudo systemctl start docker
 
   - name: Deploy Docker Container
-    command: docker run -itd -p 8084:8081 docker pull venkat2528/bankapp-universe-app:028
+    command: docker run -itd -p 8081:8084 docker pull venkat2528/bankapp-universe-app:028
