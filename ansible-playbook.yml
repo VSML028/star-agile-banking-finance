@@ -13,4 +13,4 @@
     command : sudo systemctl start docker
 
   - name: Deploy Docker Container
-    command: docker run -itd -p 8084:8081 docker pull venkat2528/bankapp-universe01-app:028
+    command: docker run -itd -p 8084:8081 docker pull venkat2528/bankapp-universe02-app:028
