@@ -1,16 +1,16 @@
 - name : Configure Docker on EC2 Instances
-  hosts : [demo]
+  hosts : all
   become: true
   connection : ssh
   tasks : 
-  - name: updating apt
-    command : sudo apt-get update
+  - name: update
+    command : apt update -y
 
   - name : Install Docker
-    command : sudo apt-get install -y docker.io
+    command : apt install docker.io -y
 
   - name : Start Docker Service
-    command : sudo systemctl start docker
+    command : systemctl start docker
 
   - name: Deploy Docker Container
-    command: docker run -itd -p 8084:8081 docker pull venkat2528/bank-app:${BUILD_NUMBER}
+    command: docker run -it -p 8084:8081 docker pull venkat2528/bank-app:${BUILD_NUMBER}
