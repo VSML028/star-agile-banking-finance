@@ -1,11 +1,10 @@
 ---
 - hosts : all
-  name : run a web server container and expose port to browser
+  name : Deploy a web server container and expose port to browser
   become: yes
   tasks : 
  - name : Install Docker
+   ansible.builtin.package:
   command : apt install docker.io -y
- - name : Start Docker Service
-    command : systemctl start docker
  - name: run Docker Container
-    command: docker container run -itd -p 8084:8081 venkat2528/bankapp-venkat-app:1.0
+    command: docker container run -itd --name s3 -p 8084:8081 venkat2528/bankapp-venkat-app:1.0
