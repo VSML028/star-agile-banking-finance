@@ -3,7 +3,7 @@
   hosts : 172.31.45.4
   become: yes
   tasks : 
- - name : Install Docker
+ - name : update Docker
   command : apt install docker.io -y
  - name: run Docker Container
     command: docker run -itd --name s3 -p 8084:8081 venkat2528/bankapp-venkat-app:1.0
