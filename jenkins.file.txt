@@ -1,7 +1,7 @@
 pipeline {
     agent any
     environment {	
-		DOCKERHUB_CREDENTIALS=credentials('venkat2528-docker-HUB-028')
+		DOCKERHUB_CREDENTIALS=credentials('venkat2528-hub')
 	}
     stages {
          stage('SCM_Checkout') {
@@ -10,7 +10,7 @@ pipeline {
                 git 'https://github.com/VSML028/star-agile-banking-finance.git'
             }
         }
-        stage('Application Build') {
+         stage('Application Build') {
             steps {
                 echo 'Perform Application Build'
                 sh 'mvn clean package'
@@ -19,8 +19,8 @@ pipeline {
         stage('Docker Build') {
             steps {
                 echo 'Perform Docker Build'
-				sh "docker build -t venkat2528/bankapp-universe02-app:028 ."
-				sh "docker tag venkat2528/bankapp-universe02-app:028 venkat2528/bankapp-universe02-app:latest"
+				sh "docker build -t venkat2528/bankapp-venkat-app:1.0 ."
+				sh "docker tag venkat2528/bankapp-venkat-app:1.0  venkat2528/bankapp-venkat-app:latest"
 				sh 'docker image list'
             }
             }
@@ -31,21 +31,18 @@ pipeline {
                 
             }
         }
-        stage('Publish the Image to Dockerhub') {
+         stage('Publish the Image to Dockerhub') {
            	 steps {
                	 echo 'Publish to DockerHub'
-				sh "docker push venkat2528/bankapp-universe02-app:latest"                
+				sh "docker push venkat2528/bankapp-venkat-app:latest"                
             }
         }
-        stage('Deploy to ansible playbook') {
+         stage('Deploy to ansible playbook') {
             steps {
 		script {
-	      ansiblePlaybook credentialsId: 'Teater-bank_finacial', 
-	      disableHostKeyChecking: true, installation: 'ansible', 
-	      inventory: '/etc/ansible/hosts', playbook: 'ansible-playbook.yml', vaultTmpPath: ''
+	     ansiblePlaybook become: true, credentialsId: 'ansible', disableHostKeyChecking: true, installation: 'ansible', inventory: '/etc/ansible/hosts', playbook: 'ansible-playbook.yml', vaultTmpPath: ''
 			}				          
             }
-
+        }
     }
-}
 }
