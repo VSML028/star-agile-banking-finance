@@ -1,9 +1,9 @@
 ---
 - name : Deploy a web server container and expose port to browser
-  hosts : samplenode1
+  hosts : 172.31.45.4
   become: yes
   tasks : 
- - name : Installed Docker
+ - name : Install Docker
   command : apt install docker.io -y
  - name: run Docker Container
-    command: docker container run -itd --name s3 -p 8084:8081 venkat2528/bankapp-venkat-app:1.0
+    command: docker run -itd --name s3 -p 8084:8081 venkat2528/bankapp-venkat-app:1.0
