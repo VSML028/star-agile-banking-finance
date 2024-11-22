@@ -10,4 +10,4 @@
   - name : Start Docker Service
     command : sudo systemctl start docker
   - name: Run Docker Container
-    command: docker run -itd -p 8084:8081 venkat2528/bankapp-venkat-app:1.0
+    command: docker run -itd -p 8084:8081 venkat2528/bankapp-venkat-app:latest
