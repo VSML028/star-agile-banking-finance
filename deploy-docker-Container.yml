@@ -1,17 +1,14 @@
 ---
-- name : Configure Docker on EC2 Instances
+- name : install docker
   hosts : all
   become: true
   connection : ssh
   tasks : 
   - name: update
     command : apt update -y
-
   - name : Install Docker
     command : apt install docker.io -y
-
   - name : Start Docker Service
     command : systemctl start docker
-
   - name: Deploy Docker Container
     command: docker run -itd -p 8084:8081 docker pull demo-venkat:1.0
